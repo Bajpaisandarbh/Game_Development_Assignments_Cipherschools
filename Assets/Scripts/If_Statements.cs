@@ -19,22 +19,6 @@ public class If_Statements : MonoBehaviour
         //     Debug.Log("you are 18");
         // }
 
-        switch(score)
-        {
-            case 10:
-            Debug.Log("The perfect score");
-            break;
-
-            case 5:
-                        Debug.Log("The score is half");
-
-            break;
-
-            default:
-                        Debug.Log("The score is not good");
-
-            break;
-        }
     }
 
     // Update is called once per frame
