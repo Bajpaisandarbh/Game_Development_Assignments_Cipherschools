@@ -8,12 +8,17 @@ public class GameplayManager : MonoBehaviour
 
     private void Start()
     {
-        SpawnTarget();
+        InvokeRepeating("SpawnTarget", lf, 1f);
     }
 
 
     void SpawnTarget()
     {
-        Instantiate(targetPrefab);
+        float xPos = Random.Range(-7.5f, 7.5f);
+        float yPos = Random.Range(-4f, 4f);
+
+        Vector3 randomtargetPos = new Vector3(xPos, yPos, 0);
+
+        Instantiate(targetPrefab, randomtargetPos, Quaternion.identity);
     }
-}
+]
