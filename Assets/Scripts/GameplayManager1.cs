@@ -8,8 +8,10 @@ public class GameplayManager : MonoBehaviour
     public static GameplayManager instance;
 
     [SerializeField] GameObject targetPrefab;
+    [SerializeField] GameObject winPanel;
 
     int score = 0;
+    bool hasWon = false;
     [SerializeField] Text scoretext;
 
     private void Awake()
@@ -19,9 +21,14 @@ public class GameplayManager : MonoBehaviour
 
     private void Start()
     {
+        winPanel.SetActive(false);
         InvokeRepeating("SpawnTarget", lf, 1f);
     }
 
+    private void Update()
+    {
+        if (hasWon) CancelInvoke("SpawnTarget");
+    }
 
     void SpawnTarget()
     {
@@ -37,6 +44,12 @@ public class GameplayManager : MonoBehaviour
     {
         score++;
         scoretext.text = score.ToString();
+
+        if (score >= 10)
+        {
+            winPanel.SetActive(true);
+            hasWon = true;
+        }
         Debug.Log("Score : " + score);
     }
 ]
