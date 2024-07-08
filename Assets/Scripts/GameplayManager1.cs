@@ -1,10 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameplayManager : MonoBehaviour
 {
+    public static GameplayManager instance;
+
     [SerializeField] GameObject targetPrefab;
+
+    int score = 0;
+    [SerializeField] Text scoretext;
+
+    private void Awake()
+    {
+        if (!instance) instance = this;
+    }
 
     private void Start()
     {
@@ -20,5 +31,12 @@ public class GameplayManager : MonoBehaviour
         Vector3 randomtargetPos = new Vector3(xPos, yPos, 0);
 
         Instantiate(targetPrefab, randomtargetPos, Quaternion.identity);
+    }
+
+    public void IncrementScore()
+    {
+        score++;
+        scoretext.text = score.ToString();
+        Debug.Log("Score : " + score);
     }
 ]
